@@ -1,9 +1,14 @@
-# api documentation for  [google-translate (v2.0.4)](https://github.com/Localize/node-google-translate)  [![npm package](https://img.shields.io/npm/v/npmdoc-google-translate.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-google-translate) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-google-translate.svg)](https://travis-ci.org/npmdoc/node-npmdoc-google-translate)
+# npmdoc-google-translate
+
+#### api documentation for  [google-translate (v2.0.4)](https://github.com/Localize/node-google-translate)  [![npm package](https://img.shields.io/npm/v/npmdoc-google-translate.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-google-translate) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-google-translate.svg)](https://travis-ci.org/npmdoc/node-npmdoc-google-translate)
+
 #### Google Translate API for Node.js
 
-[![NPM](https://nodei.co/npm/google-translate.png?downloads=true)](https://www.npmjs.com/package/google-translate)
+[![NPM](https://nodei.co/npm/google-translate.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/google-translate)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-google-translate/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-google-translate_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-google-translate/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-google-translate/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-google-translate/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-google-translate/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-google-translate/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-google-translate/build/screenCapture.npmPackageListing.svg)
 
@@ -17,16 +22,14 @@
 
 {
     "author": {
-        "name": "Brandon Paton",
-        "email": "bp@brandonpaton.com"
+        "name": "Brandon Paton"
     },
     "bugs": {
         "url": "https://github.com/Localize/node-google-translate/issues"
     },
     "contributors": [
         {
-            "name": "Brandon Paton",
-            "email": "bp@brandonpaton.com"
+            "name": "Brandon Paton"
         }
     ],
     "dependencies": {
@@ -56,17 +59,14 @@
     "main": "lib/main.js",
     "maintainers": [
         {
-            "name": "chriszieba",
-            "email": "zieba.chris@gmail.com"
+            "name": "chriszieba"
         },
         {
-            "name": "paton",
-            "email": "bp@brandonpaton.com"
+            "name": "paton"
         }
     ],
     "name": "google-translate",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git://github.com/Localize/node-google-translate.git"
@@ -75,16 +75,6 @@
     "version": "2.0.4"
 }
 ```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module google-translate](#apidoc.module.google-translate)
-
-
-
-# <a name="apidoc.module.google-translate"></a>[module google-translate](#apidoc.module.google-translate)
 
 
 
