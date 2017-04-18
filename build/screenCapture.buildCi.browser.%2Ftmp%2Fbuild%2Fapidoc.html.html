@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/Localize/node-google-translate"
-
-    >google-translate (v2.0.4)</a>
+    <a href="https://github.com/Localize/node-google-translate">google-translate (v2.0.4)</a>
 </h1>
 <h4>Google Translate API for Node.js</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.google-translate">module google-translate</a><ol>
 
@@ -98,8 +91,8 @@
   // TRANSLATE
 
   api.translate = function(strings, sourceLang, targetLang, done) {
-    if (typeof strings !== &#x27;string&#x27; &#x26;&#x26; !Array.isArray(strings)) return done(&#x27;Input source must be a string or array of strings&#x27;);
-    if (typeof sourceLang !== &#x27;string&#x27;) return done(&#x27;No target language specified. Must be a string&#x27;);
+    if (typeof strings !== 'string' &amp;&amp; !Array.isArray(strings)) return done('Input source must be a string or array of strings');
+    if (typeof sourceLang !== 'string') return done('No target language specified. Must be a string');
 
     // Make sourceLang optional
     if (!done) {
@@ -107,7 +100,7 @@
       targetLang = sourceLang;
       sourceLang = null;
     }
-    if (!_.isFunction(done)) return console.log(&#x27;No callback defined&#x27;);
+    if (!_.isFunction(done)) return console.log('No callback defined');
 
     // Split into multiple calls if string array is longer than allowed by Google (5k for POST)
     var stringSets;
@@ -127,7 +120,7 @@
     // Run queries async
     async.mapLimit(stringSets, concurrentLimit, function(stringSet, done) {
 
-      post(&#x27;&#x27;, _.extend({ q: stringSet }, data), parseTranslations(stringSet, done));
+      post('', _.extend({ q: stringSet }, data), parseTranslations(stringSet, done));
 
     }, function(err, translations) {
       if (err) return done(err);
@@ -151,17 +144,17 @@
     } else {
       target = { target: target };
     }
-    if (!_.isFunction(done)) return console.log(&#x27;No callback defined&#x27;);
+    if (!_.isFunction(done)) return console.log('No callback defined');
 
-    get(&#x27;languages&#x27;, target, parseSupportedLanguages(done));
+    get('languages', target, parseSupportedLanguages(done));
   };
 
 
   // DETECT LANGUAGES
 
   api.detectLanguage = function(strings, done) {
-    if (!done) return console.log(&#x27;No callback defined&#x27;);
-    if (typeof strings !== &#x27;string&#x27; &#x26;&#x26; !Array.isArray(strings)) return done(&#x27;Input source must be a string or array of strings&#x27;);
+    if (!done) return console.log('No callback defined');
+    if (typeof strings !== 'string' &amp;&amp; !Array.isArray(strings)) return done('Input source must be a string or array of strings');
 
     // Split into multiple calls if string array is longer than allowed by Google (5k for POST)
     var stringSets;
@@ -177,7 +170,7 @@
     // Run queries async
     async.mapLimit(stringSets, concurrentLimit, function(stringSet, done) {
 
-      post(&#x27;detect&#x27;, { q: stringSet }, parseLanguageDetections(stringSet, done));
+      post('detect', { q: stringSet }, parseLanguageDetections(stringSet, done));
 
     }, function(err, detections) {
       if (err) return done(err);
@@ -214,3 +207,4 @@
     ]
 </div>
 </div>
+</body></html>

@@ -61,12 +61,150 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.google-translate">module google-translate</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.google-translate.google-translate">
+            function <span class="apidocSignatureSpan"></span>google-translate
+            <span class="apidocSignatureSpan">(apiKey, newConcurrentLimit)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.google-translate" id="apidoc.module.google-translate">module google-translate</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.google-translate.google-translate" id="apidoc.element.google-translate.google-translate">
+        function <span class="apidocSignatureSpan"></span>google-translate
+        <span class="apidocSignatureSpan">(apiKey, newConcurrentLimit)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">google-translate = function (apiKey, newConcurrentLimit) {
+
+  // Set new concurrent limit for async calls if specified
+  concurrentLimit = newConcurrentLimit || concurrentLimit;
+
+  var get = getRequestWithApi(apiKey),
+      post = postRequestWithApi(apiKey),
+      api = {};
+
+
+  // TRANSLATE
+
+  api.translate = function(strings, sourceLang, targetLang, done) {
+    if (typeof strings !== &#x27;string&#x27; &#x26;&#x26; !Array.isArray(strings)) return done(&#x27;Input source must be a string or array of strings&#x27;);
+    if (typeof sourceLang !== &#x27;string&#x27;) return done(&#x27;No target language specified. Must be a string&#x27;);
+
+    // Make sourceLang optional
+    if (!done) {
+      done = targetLang;
+      targetLang = sourceLang;
+      sourceLang = null;
+    }
+    if (!_.isFunction(done)) return console.log(&#x27;No callback defined&#x27;);
+
+    // Split into multiple calls if string array is longer than allowed by Google (5k for POST)
+    var stringSets;
+    if (shouldSplitSegments(strings)) {
+      stringSets = [];
+      splitArraysForGoogle(strings, stringSets);
+    } else if (!Array.isArray(strings)) {
+      stringSets = [[strings]];
+    } else {
+      stringSets = [strings];
+    }
+
+    // Request options
+    var data = { target: targetLang };
+    if (sourceLang) data.source = sourceLang;
+
+    // Run queries async
+    async.mapLimit(stringSets, concurrentLimit, function(stringSet, done) {
+
+      post(&#x27;&#x27;, _.extend({ q: stringSet }, data), parseTranslations(stringSet, done));
+
+    }, function(err, translations) {
+      if (err) return done(err);
+
+      // Merge and return translation
+      translations = _.flatten(translations);
+      if (translations.length === 1) translations = translations[0];
+      done(null, translations);
+    });
+
+  };
+
+
+  // GET SUPPORTED LANGUAGES
+
+  api.getSupportedLanguages = function(target, done) {
+    // Data param is optional
+    if (_.isFunction(target)) {
+      done = target;
+      target = {};
+    } else {
+      target = { target: target };
+    }
+    if (!_.isFunction(done)) return console.log(&#x27;No callback defined&#x27;);
+
+    get(&#x27;languages&#x27;, target, parseSupportedLanguages(done));
+  };
+
+
+  // DETECT LANGUAGES
+
+  api.detectLanguage = function(strings, done) {
+    if (!done) return console.log(&#x27;No callback defined&#x27;);
+    if (typeof strings !== &#x27;string&#x27; &#x26;&#x26; !Array.isArray(strings)) return done(&#x27;Input source must be a string or array of strings&#x27;);
+
+    // Split into multiple calls if string array is longer than allowed by Google (5k for POST)
+    var stringSets;
+    if (shouldSplitSegments(strings)) {
+      stringSets = [];
+      splitArraysForGoogle(strings, stringSets);
+    } else if (!Array.isArray(strings)) {
+      stringSets = [[strings]];
+    } else {
+      stringSets = [strings];
+    }
+
+    // Run queries async
+    async.mapLimit(stringSets, concurrentLimit, function(stringSet, done) {
+
+      post(&#x27;detect&#x27;, { q: stringSet }, parseLanguageDetections(stringSet, done));
+
+    }, function(err, detections) {
+      if (err) return done(err);
+
+      // Merge arrays and return detections
+      detections = _.flatten(detections);
+      if (detections.length === 1) detections = detections[0];
+      done(null, detections);
+
+    });
+
+  };
+
+  ////
+  //   RETURN API
+  ////
+
+  return {
+    translate:                api.translate,
+    getSupportedLanguages:    api.getSupportedLanguages,
+    detectLanguage:           api.detectLanguage
+  };
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 
