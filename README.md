@@ -1,6 +1,6 @@
 # npmdoc-google-translate
 
-#### api documentation for  [google-translate (v2.0.4)](https://github.com/Localize/node-google-translate)  [![npm package](https://img.shields.io/npm/v/npmdoc-google-translate.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-google-translate) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-google-translate.svg)](https://travis-ci.org/npmdoc/node-npmdoc-google-translate)
+#### basic api documentation for  [google-translate (v2.0.4)](https://github.com/Localize/node-google-translate)  [![npm package](https://img.shields.io/npm/v/npmdoc-google-translate.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-google-translate) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-google-translate.svg)](https://travis-ci.org/npmdoc/node-npmdoc-google-translate)
 
 #### Google Translate API for Node.js
 
@@ -72,7 +72,8 @@
         "url": "git://github.com/Localize/node-google-translate.git"
     },
     "scripts": {},
-    "version": "2.0.4"
+    "version": "2.0.4",
+    "bin": {}
 }
 ```
 
